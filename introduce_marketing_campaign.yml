@@ -1,0 +1,6 @@
+- name: Introduce Marketing Campaign
+  hosts: all
+  tasks:
+    - name: URI
+      uri:
+        url: http://35.186.151.37/carts/1/items/promotion/50

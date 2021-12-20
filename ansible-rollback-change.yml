@@ -1,0 +1,23 @@
+# rollback change
+---
+-
+  hosts: localhost
+  name: "rollback change with Ansible"
+  tasks:
+    -
+      name: "rollback a change with Ansible task(s)"
+      uri:
+        url: "http://{{ sockshop_url }}/carts/1/items/promotion/0"
+    -
+      name: "send Dynatrace custom configuration event with business context information"
+      uri:
+        url: https://{{ dynatrace_api_url }}/api/v1/problem/details/{{ pid }}/comments?Api-Token={{ dynatrace_token }}
+        method: POST
+        headers:
+          content-type: application/json
+        body:
+          comment: "Rolling back promotion campaign"
+          user: admin
+          context: Ansible
+        body_format: json
+        status_code: 200
