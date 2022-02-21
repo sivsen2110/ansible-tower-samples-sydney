@@ -16,8 +16,8 @@
         headers:
           content-type: application/json
         body:
-          comment: "Rolling back promotion campaign"
-          user: admin
-          context: Ansible
+          comment: "Remediating the problem created by the Marketing Campaign automatically"
+          user: Automator Admin
+          context: Ansible Automation Platform
         body_format: json
         status_code: 200
