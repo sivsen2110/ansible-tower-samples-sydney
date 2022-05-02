@@ -1,0 +1,31 @@
+- name: Introduce Marketing Campaign
+  hosts: all
+  tasks:
+    -
+      name: "send Dynatrace the marketing campaign deployment event"
+      uri:
+        url: https://{{ dynatrace_api_url }}/api/v1/events/?Api-Token={{ dynatrace_token }}
+        method: POST
+        headers:
+          content-type: application/json
+        body:
+          title: Marketing Promotion
+          source: Ansible for Application Deployment
+          description: Guess what, the Marketing team introducted an awesome Promotion in ItemsController.carts.production
+          eventType: CUSTOM_DEPLOYMENT
+          deploymentName: Marketing Promotion deployment
+          deploymentVersion: v1.2
+          attachRules:
+            tagRule:
+            - meTypes:
+              - SERVICE
+              tags:
+              - context: KUBERNETES
+                key: app
+                value: carts
+        body_format: json
+        status_code: 200
+    - 
+      name: URI
+      uri:
+        url: http://carts.sockshop.demo.amrith.me//carts/1/items/promotion/50
