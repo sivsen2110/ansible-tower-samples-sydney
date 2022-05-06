@@ -28,4 +28,4 @@
     - 
       name: URI
       uri:
-        url: http://34.116.65.48/carts/1/items/promotion/50
+        url: http://{{ sockshop_url }}/carts/1/items/promotion/50
