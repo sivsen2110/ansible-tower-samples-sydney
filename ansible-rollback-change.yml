@@ -45,7 +45,3 @@
                 value: carts
         body_format: json
         status_code: 200
-     -
-      name: "Keptn Evaluation"
-      uri:
-        url: "curl -X POST "https://djk75012.cloudautomation.live.dynatrace.com/api/controlPlane/v1/project/qualitygate-sockshop1/stage/prod/service/carts/evaluation" -H "accept: application/json" -H "x-token: CNSryaslXcH7HHhbGCOVxr3lrtwv9znVvOCA5vomo1kim" -H "Content-Type: application/json" -d "{ \"timeframe\": \"2m\"}"
