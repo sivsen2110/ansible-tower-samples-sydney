@@ -21,7 +21,7 @@
           context: Ansible Automation Platform
         body_format: json
         status_code: 200
-     -
+    -
       name: "Rollback Event as Deployment Event"
       uri:
         url: https://{{ dynatrace_api_url }}/api/v1/events/?Api-Token={{ dynatrace_token }}
