@@ -52,7 +52,7 @@
         method: POST
         body_format: json
         body:
-        { \"timeframe\": \"3m\"}
+        {timeframe:3m}
       headers:
         accept: application/json
         x-token: CNSryaslXcH7HHhbGCOVxr3lrtwv9znVvOCA5vomo1kim
