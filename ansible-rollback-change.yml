@@ -45,3 +45,16 @@
                 value: carts
         body_format: json
         status_code: 200
+    - 
+      name: "CloudAutomation Trigger Evaluation"
+      uri:
+        url: https://djk75012.cloudautomation.live.dynatrace.com/api/controlPlane/v1/project/qualitygate-sockshop1/stage/prod/service/carts/evaluation
+        method: POST
+        body_format: json
+        body:
+        { \"timeframe\": \"3m\"}
+      headers:
+        accept: application/json
+        x-token: CNSryaslXcH7HHhbGCOVxr3lrtwv9znVvOCA5vomo1kim
+        Content-Type: application/json
+        status_code: 200
