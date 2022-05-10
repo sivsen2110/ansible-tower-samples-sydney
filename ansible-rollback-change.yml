@@ -1,10 +1,7 @@
-# rollback change
----
--
-  hosts: localhost
-  name: "rollback change with Ansible"
+- name: Rollback Script
+  hosts: all
   tasks:
-     -
+    -
       name: "send Dynatrace the marketing campaign deployment event"
       uri:
         url: https://{{ dynatrace_api_url }}/api/v1/events/?Api-Token={{ dynatrace_token }}
@@ -12,12 +9,12 @@
         headers:
           content-type: application/json
         body:
-          title: Marketing Promotion Rollback
+          title: Marketing Promotion
           source: Ansible for Application Deployment
-          description: Rolling back automatically after failure
+          description: Guess what, the Marketing team introducted an awesome Promotion in ItemsController.carts.production
           eventType: CUSTOM_DEPLOYMENT
-          deploymentName: Marketing Promotion Rollback
-          deploymentVersion: v1.1
+          deploymentName: Marketing Promotion deployment
+          deploymentVersion: v1.2
           attachRules:
             tagRule:
             - meTypes:
@@ -29,19 +26,6 @@
         body_format: json
         status_code: 200
     - 
-      name: "Rollback script"
+      name: URI
       uri:
         url: http://{{ sockshop_url }}/carts/1/items/promotion/0
-    - 
-      name: "CloudAutomation Trigger Evaluation"
-      uri:
-        url: https://djk75012.cloudautomation.live.dynatrace.com/api/controlPlane/v1/project/qualitygate-sockshop1/stage/prod/service/carts/evaluation
-        method: POST
-        headers:
-          accept: application/json
-          x-token: CNSryaslXcH7HHhbGCOVxr3lrtwv9znVvOCA5vomo1kim
-          content-type: application/json
-        body:
-          timeframe: 3m
-        body_format: json
-        status_code: 200
