@@ -4,12 +4,8 @@
   hosts: localhost
   name: "rollback change with Ansible"
   tasks:
-    -
-      name: "rollback a change with Ansible task(s)"
-      uri:
-        url: "http://{{ sockshop_url }}/carts/1/items/promotion/0"
-    -
-      name: "Rollback Event as Deployment Event"
+     -
+      name: "send Dynatrace the marketing campaign deployment event"
       uri:
         url: https://{{ dynatrace_api_url }}/api/v1/events/?Api-Token={{ dynatrace_token }}
         method: POST
@@ -18,9 +14,9 @@
         body:
           title: Marketing Promotion Rollback
           source: Ansible for Application Deployment
-          description: Failure rate increased and we are rolling back to v1.1 automatically
+          description: Rolling back automatically after failure
           eventType: CUSTOM_DEPLOYMENT
-          deploymentName: Marketing Promotion deployment Rollback
+          deploymentName: Marketing Promotion Rollback
           deploymentVersion: v1.1
           attachRules:
             tagRule:
@@ -30,8 +26,12 @@
               - context: KUBERNETES
                 key: app
                 value: carts
-          body_format: json
-          status_code: 200
+        body_format: json
+        status_code: 200
+    - 
+      name: "Rollback script"
+      uri:
+        url: http://{{ sockshop_url }}/carts/1/items/promotion/0
     - 
       name: "CloudAutomation Trigger Evaluation"
       uri:
