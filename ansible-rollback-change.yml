@@ -42,3 +42,16 @@
           timeframe: 3m
         body_format: json
         status_code: 200
+    -
+      name: "send Dynatrace custom configuration event with business context information"
+      uri:
+        url: https://{{ dynatrace_api_url }}/api/v1/problem/details/{{ pid }}/comments?Api-Token={{ dynatrace_token }}
+        method: POST
+        headers:
+          content-type: application/json
+        body:
+          comment: "Remediating the problem created by the Marketing Campaign automatically"
+          user: Automator Admin
+          context: Ansible Automation Platform
+        body_format: json
+        status_code: 200
