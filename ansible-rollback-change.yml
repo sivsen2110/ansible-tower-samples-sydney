@@ -55,3 +55,21 @@
           context: Ansible Automation Platform
         body_format: json
         status_code: 200
+    - 
+      name: Sleep for 300 seconds and continue with play
+      wait_for:
+        timeout: 300
+      delegate_to: localhost
+    - 
+      name: "CloudAutomation Trigger Evaluation"
+      uri:
+        url: https://djk75012.cloudautomation.live.dynatrace.com/api/controlPlane/v1/project/qualitygate-sockshop1/stage/prod/service/carts/evaluation
+        method: POST
+        headers:
+          accept: application/json
+          x-token: CNSryaslXcH7HHhbGCOVxr3lrtwv9znVvOCA5vomo1kim
+          content-type: application/json
+        body:
+          timeframe: 3m
+        body_format: json
+        status_code: 200
