@@ -2,19 +2,19 @@
   hosts: all
   tasks:
     -
-      name: "send Dynatrace the marketing campaign deployment event"
+      name: "send Dynatrace the marketing campaign Rollback event"
       uri:
         url: https://{{ dynatrace_api_url }}/api/v1/events/?Api-Token={{ dynatrace_token }}
         method: POST
         headers:
           content-type: application/json
         body:
-          title: Marketing Promotion
+          title: Marketing Promotion Rollback
           source: Ansible for Application Deployment
-          description: Guess what, the Marketing team introducted an awesome Promotion in ItemsController.carts.production
+          description: Rolling back after failure rate increase
           eventType: CUSTOM_DEPLOYMENT
-          deploymentName: Marketing Promotion deployment
-          deploymentVersion: v1.2
+          deploymentName: Marketing Promotion Rollback to v1.1
+          deploymentVersion: v1.1
           attachRules:
             tagRule:
             - meTypes:
