@@ -13,7 +13,7 @@
           source: Ansible for Application Deployment
           description: Rolling back after failure rate increase
           eventType: CUSTOM_DEPLOYMENT
-          deploymentName: Marketing Promotion Rollback to v1.1
+          deploymentName: Marketing Promotion Rollback
           deploymentVersion: v1.1
           attachRules:
             tagRule:
