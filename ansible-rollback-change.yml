@@ -5,6 +5,10 @@
   name: "rollback change with Ansible"
   tasks:
     -
+      name: "rollback a change with Ansible task(s)"
+      uri:
+        url: "http://{{ sockshop_url }}/carts/1/items/promotion/0"
+    -
       name: "Rollback Event as Deployment Event"
       uri:
         url: https://{{ dynatrace_api_url }}/api/v1/events/?Api-Token={{ dynatrace_token }}
@@ -28,3 +32,16 @@
                 value: carts
           body_format: json
           status_code: 200
+    - 
+      name: "CloudAutomation Trigger Evaluation"
+      uri:
+        url: https://djk75012.cloudautomation.live.dynatrace.com/api/controlPlane/v1/project/qualitygate-sockshop1/stage/prod/service/carts/evaluation
+        method: POST
+        headers:
+          accept: application/json
+          x-token: CNSryaslXcH7HHhbGCOVxr3lrtwv9znVvOCA5vomo1kim
+          content-type: application/json
+        body:
+          timeframe: 3m
+        body_format: json
+        status_code: 200
